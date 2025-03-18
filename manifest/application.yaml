@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chek-app
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/ChekYeaw/activity3.13.git"
+    targetRevision: main
+    path: manifest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: chek-ns
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
